@@ -40,32 +40,6 @@ block content
             form(action="", method="POST")
               {% csrf_token %}
               //#{form.errors}
-              - if invite
-                p.invite-content
-                  label #{form.invitation_code.label}
-                  #{form.invitation_code.errors}
-                  #{form.invitation_code}
-                p.no-invite-content.apply-hidden
-                  label Your Application
-                  #{form.application.errors}
-                  #{form.application|add_class:"hackeressay"}
-              - else
-                p.invite-content.apply-hidden
-                  label #{form.invitation_code.label}
-                  #{form.invitation_code.errors}
-                  #{form.invitation_code}
-                p.no-invite-content
-                  label Your Application
-                  #{form.application.errors}
-                  // #{form.application|add_class:"hackeressay"}
-                  textarea(rows="10", cols="40", name="application")#id_application.hackeressay
-                    | 1. What do you build?
-                    | 2. What tools do you use?
-                    | 3. Can we see your work online?
-                    | 4. What are you currently learning?
-                    | 5. Why would you like to join?
-                    | 6. What is your favorite personal hack?
-                    | 7. Anything else we should know?
               p
                 label Username
                 #{form.username.errors}
@@ -90,6 +64,62 @@ block content
                 //- input(type="password", placeholder="password", value="aasldfjkhlds")
                 #{form.password2.errors}
                 #{form.password2}
+              - if invite
+                p.invite-content
+                  label #{form.invitation_code.label}
+                  #{form.invitation_code.errors}
+                  #{form.invitation_code}
+                p.no-invite-content.apply-hidden
+                  label Your Application
+                  #{form.application.errors}
+                  #{form.application|add_class:"hackeressay"}
+              - else
+                p.invite-content.apply-hidden
+                  label #{form.invitation_code.label}
+                  #{form.invitation_code.errors}
+                  #{form.invitation_code}
+                p.no-invite-content
+                  label What do you build? 
+                  #{form.application1.errors}
+                  #{form.application1|add_class:"inline"}
+                p.no-invite-content
+                  label What tools do you use?
+                  #{form.application2.errors}
+                  #{form.application2|add_class:"inline"}
+                p.no-invite-content
+                  label Can we see you work online?
+                  #{form.application3.errors}
+                  #{form.application3|add_class:"inline"}
+                p.no-invite-content
+                  label What are you currently learning?
+                  #{form.application4.errors}
+                  #{form.application4|add_class:"inline"}
+                p.no-invite-content
+                  label Why would you like to join?
+                  #{form.application5.errors}
+                  #{form.application5|add_class:"inline"}
+                p.no-invite-content
+                  label What is your favorite personal hack?
+                  #{form.application6.errors}
+                  #{form.application6|add_class:"inline"}
+                p.no-invite-content
+                  label Anything else we should know?
+                  #{form.application7.errors}
+                  #{form.application7|add_class:"hackeressay"}
+
+
+                  //label Your Application
+                  //#{form.application.errors}
+                  // #{form.application|add_class:"hackeressay"}
+                  //textarea(rows="10", cols="40", name="application")#id_application.hackeressay
+                  //  | 1. What do you build?
+                  //  | 2. What tools do you use?
+                  //  | 3. Can we see your work online?
+                  //  | 4. What are you currently learning?
+                  //  | 5. Why would you like to join?
+                  //  | 6. What is your favorite personal hack?
+                  //  | 7. Anything else we should know?
+              
               p
                 label Preferred Chapter
                 #{form.chapter}

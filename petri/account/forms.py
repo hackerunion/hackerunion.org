@@ -243,7 +243,13 @@ class NoticeForm(forms.Form):
 
 
 class AccountApplicationForm(UserCreationForm):
-    application = forms.CharField(max_length=settings.APPLICATION_MAX_LEN, widget=forms.widgets.Textarea(), min_length=settings.APPLICATION_MIN_LEN, required=False)
+    application1 = forms.CharField(max_length=settings.APPLICATION_MAX_LEN, min_length=settings.APPLICATION_MIN_LEN, required=False)
+    application2 = forms.CharField(max_length=settings.APPLICATION_MAX_LEN, min_length=settings.APPLICATION_MIN_LEN, required=False)
+    application3 = forms.CharField(max_length=settings.APPLICATION_MAX_LEN, min_length=settings.APPLICATION_MIN_LEN, required=False)
+    application4 = forms.CharField(max_length=settings.APPLICATION_MAX_LEN, min_length=settings.APPLICATION_MIN_LEN, required=False)
+    application5 = forms.CharField(max_length=settings.APPLICATION_MAX_LEN, min_length=settings.APPLICATION_MIN_LEN, required=False)
+    application6 = forms.CharField(max_length=settings.APPLICATION_MAX_LEN, min_length=settings.APPLICATION_MIN_LEN, required=False)
+    application7 = forms.CharField(max_length=settings.APPLICATION_MAX_LEN, widget=forms.widgets.Textarea(), min_length=settings.APPLICATION_MIN_LEN, required=False)
     invitation_code = forms.CharField(max_length=settings.INVITATION_CODE_LENGTH, required=False, label="Invite Code?")
     email = forms.EmailField(label="Email")
     chapter = forms.ModelChoiceField(queryset=Chapter.objects.all(), empty_label=None)
@@ -274,7 +280,8 @@ class AccountApplicationForm(UserCreationForm):
         profile = user.get_profile()
         profile.display_name = self.cleaned_data.get("display_name")
         invited = False
-        application = self.cleaned_data.get("application")
+        #application = self.cleaned_data.get("application")
+        application = self.get_application()
 
         chapter = self.cleaned_data.get("chapter")
         invitation_code = self.cleaned_data.get("invitation_code")
@@ -298,6 +305,10 @@ class AccountApplicationForm(UserCreationForm):
 
         return user
 
+    def get_application(self):
+        cleaned_data = super(AccountApplicationForm, self).clean()
+        return cleaned_data.get("application1") + cleaned_data.get("application2") + cleaned_data.get("application3") + cleaned_data.get("application4") + cleaned_data.get("application5") + cleaned_data.get("application6") + cleaned_data.get("application7")
+
     def clean_display_name(self):
         data = self.cleaned_data['display_name']
         if data.strip() == "":
@@ -316,7 +327,8 @@ class AccountApplicationForm(UserCreationForm):
 
     def clean(self):
         cleaned_data = super(AccountApplicationForm, self).clean()
-        application = cleaned_data.get("application")
+        #application = cleaned_data.get("application")
+        application = self.get_application()
         invitation_code = cleaned_data.get("invitation_code")
         chapter = cleaned_data.get("chapter")
 
