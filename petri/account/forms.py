@@ -254,6 +254,7 @@ class AccountApplicationForm(UserCreationForm):
     email = forms.EmailField(label="Email")
     chapter = forms.ModelChoiceField(queryset=Chapter.objects.all(), empty_label=None)
 
+
     display_name = forms.RegexField(label=_("Display Name"), max_length=30,
         regex=r'^[ \w-]+$',
         help_text=_("Required. 30 characters or fewer. Letters, digits, spaces, hyphens and "
