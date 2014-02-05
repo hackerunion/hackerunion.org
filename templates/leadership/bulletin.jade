@@ -6,6 +6,15 @@
     !{bulletin.content|safe} 
     
   .bulletin-actions.text-right
+    //- span.leadership.mark
+      a(href="#", data-name="#{bulletin.get_request_name()}", data-pk="#{bulletin.pk}").request-active Mark Active
+    span.leadership.mark
+      a(href="#", data-name="#{bulletin.get_request_name()}", data-pk="#{bulletin.pk}", data-request="#{bulletin.request}").request-approve Approve
+    span.leadership
+      a(href="#", data-name="#{bulletin.get_request_name()}", data-pk="#{bulletin.pk}").request-deny Deny
+    span.leadership
+      a(href="mailto:#{bulletin.owner.email}", target="_blank") Contact
+
     - if is_member
       span.recommend
         span.icon-bulletin
